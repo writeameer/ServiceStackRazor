@@ -1,0 +1,48 @@
+﻿ @inherits ViewPage<RegisterResponse>
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Registration Page</title>
+        <link rel="stylesheet" type="text/css" href="/Common/Content/Styles/site.css">
+    </head>
+    
+    @if (Model.RegisterRequest == null)
+    {
+
+        <body>        
+            <h1>RegisterRequest</h1>
+        
+            @if (Request.QueryString["error"] != null)
+            {
+                <p style="color: red;">
+                    @Request.QueryString["error"]
+                </p>
+            }
+
+            <div id="content">
+                <form action='/register' method='post'>
+                    <dl>
+                        <dt>Email:</dt>
+                        <dd><input type='text' name='Email' /></dd>
+
+                        <dt>Password:</dt>
+                        <dd><input type='password' name='Password' /></dd>
+                    
+                        <dt>Password Confirmation:</dt>
+                        <dd><input type='password' name='PasswordConfirmation' /></dd>
+
+                    </dl>             
+                    <input type='submit' value='RegisterRequest' />
+                </form>
+
+            </div>
+        </body>
+    }
+    else
+    {
+        <div>Congratualtions, you have registered successfully !</div>
+        @Model.ResponseStatus.Errors
+    }
+</html>
